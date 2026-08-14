@@ -1,0 +1,253 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+#shopify-section-{{ section.id }} {
+  --ink:#f4f0fb; --brand:#4b3a8f; --paper:#241a3d; --paper-2:rgba(36,26,61,.78);
+  --paper-3:rgba(36,26,61,.56); --accent:#b8701c; --surface:#17102b;
+  --g-bg:linear-gradient(158deg,rgba(255,255,255,.80),rgba(236,230,247,.56) 58%,rgba(222,212,240,.50));
+  --g-inset:inset 0 1px 0 rgba(255,255,255,.92);
+  --sec-y:34px; --maxw:1180px; --ease:cubic-bezier(.2,.7,.2,1);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+#shopify-section-{{ section.id }} * { box-sizing:border-box; margin:0; padding:0; }
+#shopify-section-{{ section.id }} .wrap { max-width:var(--maxw); margin:0 auto; padding:0 18px; }
+#shopify-section-{{ section.id }} a { color:inherit; text-decoration:none; }
+
+#shopify-section-{{ section.id }} .d2 { font-family:'Outfit',sans-serif; text-transform:uppercase; letter-spacing:-.018em; font-weight:800; font-size:clamp(30px,4.6vw,54px); line-height:.94; color:var(--surface); margin-bottom:14px; }
+#shopify-section-{{ section.id }} .body-s { font-size:14.5px; color:var(--paper-2); line-height:1.66; max-width:40ch; }
+#shopify-section-{{ section.id }} .kicker { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--paper-3); }
+
+#shopify-section-{{ section.id }} .sec { position:relative; padding:var(--sec-y) 0; }
+#shopify-section-{{ section.id }} .sec-pad { padding:clamp(26px,3.4vw,40px); }
+
+#shopify-section-{{ section.id }} .glass { background:var(--g-bg); backdrop-filter:blur(24px) saturate(150%); border:1px solid rgba(75,58,143,.16); border-radius:26px; box-shadow:0 22px 54px rgba(58,44,112,.13), var(--g-inset); position:relative; overflow:hidden; }
+#shopify-section-{{ section.id }} .glass-2 { background:linear-gradient(158deg,rgba(255,255,255,.66),rgba(236,230,247,.44)); backdrop-filter:blur(18px) saturate(135%); border:1px solid rgba(75,58,143,.13); border-radius:26px; box-shadow:0 16px 38px rgba(58,44,112,.10), inset 0 1px 0 rgba(255,255,255,.86); position:relative; overflow:hidden; }
+
+/* Proof Grid */
+#shopify-section-{{ section.id }} .proof { display:grid; gap:22px; grid-template-columns:1fr; }
+@media(min-width:900px){ #shopify-section-{{ section.id }} .proof { grid-template-columns:1.05fr .62fr; gap:30px; align-items:center; } }
+#shopify-section-{{ section.id }} .proof-l .btn { margin-top:22px; }
+
+/* Stats */
+#shopify-section-{{ section.id }} .proof-stats { margin-top:20px; grid-column:1/-1; }
+#shopify-section-{{ section.id }} .stats { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; padding:22px 18px; }
+@media(min-width:640px){ #shopify-section-{{ section.id }} .stats { grid-template-columns:repeat(4,1fr); } }
+#shopify-section-{{ section.id }} .stat { text-align:center; }
+#shopify-section-{{ section.id }} .stat .ring { width:74px; height:74px; margin:0 auto 11px; border-radius:50%; display:grid; place-items:center; border:1.5px solid rgba(75,58,143,.24); background:radial-gradient(circle at 34% 26%,rgba(255,255,255,.86),rgba(236,230,247,.52)); font-family:'Outfit',sans-serif; font-weight:800; font-size:19px; color:var(--surface); letter-spacing:-.02em; }
+#shopify-section-{{ section.id }} .stat h5 { font-size:10.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:#b8701c; margin-bottom:5px; }
+#shopify-section-{{ section.id }} .stat p { font-size:11.4px; color:var(--paper-2); line-height:1.44; }
+
+/* Rotator */
+#shopify-section-{{ section.id }} {
+  --p-dish:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODAgNjA5IiB3aWR0aD0iMzgwIiBoZWlnaHQ9IjYwOSI+CjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM0YjNhOGYiIHN0b3Atb3BhY2l0eT0iLjk1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNGIzYThmIiBzdG9wLW9wYWNpdHk9Ii42MiIvPgo8L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KPHJlY3QgeD0iMTQ5LjkiIHk9IjAiIHdpZHRoPSI4MC4xIiBoZWlnaHQ9IjYwLjknIHJ4PSIxNy42IiBmaWxsPSIjNGIzYThmIiBvcGFjaXR5PSIuODUiLz4KPHJlY3QgeD0iMTYxLjIiIHk9IjU0LjgiIHdpZHRoPSI1Ny43IiBoZWlnaHQ9IjQyLjYiIGZpbGw9IiM0YjNhOGYiIG9wYWNpdHk9Ii43Ii8+CjxyZWN0IHg9IjcyLjIiIHk9IjEyMS44IiB3aWR0aD0iMjM1LjYiIGhlaWdodD0iNDg3LjIiIHJ4PSIzNy43IiBmaWxsPSJ1cmwoI2cpIi8+CjxyZWN0IHg9IjEwMC41IiB5PSIyNjguMCIgd2lkdGg9IjE3OS4xIiBoZWlnaHQ9IjE2NS42IiByeD0iMTEuOCIgZmlsbD0iI2ZhZjdmZCIgb3BhY2l0eT0iLjg4Ii8+CjxyZWN0IHg9IjEyOC43IiB5PSIzMTYuNyIgd2lkdGg9IjEyMi41IiBoZWlnaHQ9IjIxLjkiIHJ4PSIyIiBmaWxsPSIjNGIzYThmIiBvcGFjaXR5PSIuNTUiLz4KPHJlY3QgeD0iMTQyLjkiIHk9IjM2MC41IiB3aWR0aD0iOTQuMiIgaGVpZ2h0PSIxNy4xIiByeD0iMiIgZmlsbD0iIzRiM2E4ZiIgb3BhY2l0eT0iLjM1Ii8+Cjwvc3ZnPg==");
+  --p-floor:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODAgNjAyIiB3aWR0aD0iMzgwIiBoZWlnaHQ9IjYwMiI+CjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM4MTY4YzkiIHN0b3Atb3BhY2l0eT0iLjk1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjODE2OGM5IiBzdG9wLW9wYWNpdHk9Ii42MiIvPgo8L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KPHJlY3QgeD0iMTQ5LjkiIHk9IjAiIHdpZHRoPSI4MC4xIiBoZWlnaHQ9IjYwLjIiIHJ4PSIxNy42IiBmaWxsPSIjODE2OGM5IiBvcGFjaXR5PSIuODUiLz4KPHJlY3QgeD0iMTYxLjIiIHk9IjU0LjIiIHdpZHRoPSI1Ny43IiBoZWlnaHQ9IjQyLjEiIGZpbGw9IiM4MTY4YzkiIG9wYWNpdHk9Ii43Ii8+CjxyZWN0IHg9IjcyLjIiIHk9IjEyMC40IiB3aWR0aD0iMjM1LjYiIGhlaWdodD0iNDgxLjYiIHJ4PSIzNy43IiBmaWxsPSJ1cmwoI2cpIi8+CjxyZWN0IHg9IjEwMC41IiB5PSIyNjQuOSIgd2lkdGg9IjE3OS4xIiBoZWlnaHQ9IjE2My43IiByeD0iMTEuOCIgZmlsbD0iI2ZhZjdmZCIgb3BhY2l0eT0iLjg4Ii8+CjxyZWN0IHg9IjEyOC43IiB5PSIzMTMuMCIgd2lkdGg9IjEyMi41IiBoZWlnaHQ9IjIxLjciIHJ4PSIyIiBmaWxsPSIjODE2OGM5IiBvcGFjaXR5PSIuNTUiLz4KPHJlY3QgeD0iMTQyLjkiIHk9IjM1Ni40IiB3aWR0aD0iOTQuMiIgaGVpZ2h0PSIxNi45IiByeD0iMiIgZmlsbD0iIzgxNjhjOSIgb3BhY2l0eT0iLjM1Ii8+Cjwvc3ZnPg==");
+  --p-kitchen:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODAgNTk1IiB3aWR0aD0iMzgwIiBoZWlnaHQ9IjU5NSI+CjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM2YjU1YjgiIHN0b3Atb3BhY2l0eT0iLjk1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNmI1NWI4IiBzdG9wLW9wYWNpdHk9Ii42MiIvPgo8L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KPHJlY3QgeD0iMTQ5LjkiIHk9IjAiIHdpZHRoPSI4MC4xIiBoZWlnaHQ9IjU5LjUiIHJ4PSIxNy42IiBmaWxsPSIjNmI1NWI4IiBvcGFjaXR5PSIuODUiLz4KPHJlY3QgeD0iMTYxLjIiIHk9IjUzLjYiIHdpZHRoPSI1Ny43IiBoZWlnaHQ9IjQxLjciIGZpbGw9IiM2YjU1YjgiIG9wYWNpdHk9Ii43Ii8+CjxyZWN0IHg9IjcyLjIiIHk9IjExOS4wIiB3aWR0aD0iMjM1LjYiIGhlaWdodD0iNDc2LjAiIHJ4PSIzNy43IiBmaWxsPSJ1cmwoI2cpIi8+CjxyZWN0IHg9IjEwMC41IiB5PSIyNjEuOCIgd2lkdGg9IjE3OS4xIiBoZWlnaHQ9IjE2MS44IiByeD0iMTEuOCIgZmlsbD0iI2ZhZjdmZCIgb3BhY2l0eT0iLjg4Ii8+CjxyZWN0IHg9IjEyOC43IiB5PSIzMDkuNCIgd2lkdGg9IjEyMi41IiBoZWlnaHQ9IjIxLjQiIHJ4PSIyIiBmaWxsPSIjNmI1NWI4IiBvcGFjaXR5PSIuNTUiLz4KPHJlY3QgeD0iMTQyLjkiIHk9IjM1Mi4yIiB3aWR0aD0iOTQuMiIgaGVpZ2h0PSIxNi43IiByeD0iMiIgZmlsbD0iIzZiNTViOCIgb3BhY2l0eT0iLjM1Ii8+Cjwvc3ZnPg==");
+  --p-laundry:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODAgNjAzIiB3aWR0aD0iMzgwIiBoZWlnaHQ9IjYwMyI+CjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM1YTQ2YTMiIHN0b3Atb3BhY2l0eT0iLjk1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNWE0NmEzIiBzdG9wLW9wYWNpdHk9Ii42MiIvPgo8L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KPHJlY3QgeD0iMTQ5LjkiIHk9IjAiIHdpZHRoPSI4MC4xIiBoZWlnaHQ9IjYwLjMiIHJ4PSIxNy42IiBmaWxsPSIjNWE0NmEzIiBvcGFjaXR5PSIuODUiLz4KPHJlY3QgeD0iMTYxLjIiIHk9IjU0LjMkeWlkdGg9IjU3LjciIGhlaWdodD0iNDIuMiIgZmlsbD0iIzVhNDZhMyIgb3BhY2l0eT0iLjciLz4KPHJlY3QgeD0iNzIuMiIgeT0iMTIwLjYiIHdpZHRoPSIyMzUuNiIgaGVpZ2h0PSI0ODIuNCIgcng9IjM3LjciIGZpbGw9InVybCgjZykiLz4KPHJlY3QgeD0iMTAwLjUiIHk9IjI2NS4zIiB3aWR0aD0iMTc5LjEiIGhlaWdodD0iMTY0LjAiIHJ4PSIxMS44IiBmaWxsPSIjZmFmN2ZkIiBvcGFjaXR5PSIuODgiLz4KPHJlY3QgeD0iMTI4LjciIHk9IjMxMy42IiB3aWR0aD0iMTIyLjUiIGhlaWdodD0iMjEuNyIgcng9IjIiIGZpbGw9IiM1YTQ2YTMiIG9wYWNpdHk9Ii41NSIvPgo8cmVjdCB4PSIxNDIuOSIgeT0iMzU3LjAiIHdpZHRoPSI5NC4yIiBoZWlnaHQ9IjE2LjkiIHJ4PSIyIiBmaWxsPSIjNWE0NmEzIiBvcGFjaXR5PSIuMzUiLz4KPC9zdmc+");
+  --p-tap:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODAgNTk1IiB3aWR0aD0iMzgwIiBoZWlnaHQ9IjU5NSI+CjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM2MjUwYWQiIHN0b3Atb3BhY2l0eT0iLjk1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNjI1MGFkIiBzdG9wLW9wYWNpdHk9Ii42MiIvPgo8L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KPHJlY3QgeD0iMTQ5LjkiIHk9IjAiIHdpZHRoPSI4MC4xIiBoZWlnaHQ9IjU5LjUiIHJ4PSIxNy42IiBmaWxsPSIjNjI1MGFkIiBvcGFjaXR5PSIuODUiLz4KPHJlY3QgeD0iMTYxLjIiIHk9IjUzLjYiIHdpZHRoPSI1Ny43IiBoZWlnaHQ9IjQxLjciIGZpbGw9IiM2MjUwYWQiIG9wYWNpdHk9Ii43Ii8+CjxyZWN0IHg9IjcyLjIiIHk9IjExOS4wIiB3aWR0aD0iMjM1LjYiIGhlaWdodD0iNDc2LjAiIHJ4PSIzNy43IiBmaWxsPSJ1cmwoI2cpIi8+CjxyZWN0IHg9IjEwMC41IiB5PSIyNjEuOCIgd2lkdGg9IjE3OS4xIiBoZWlnaHQ9IjE2MS44IiByeD0iMTEuOCIgZmlsbD0iI2ZhZjdmZCIgb3BhY2l0eT0iLjg4Ii8+CjxyZWN0IHg9IjEyOC43IiB5PSIzMDkuNCIgd2lkdGg9IjEyMi41IiBoZWlnaHQ9IjIxLjQiIHJ4PSIyIiBmaWxsPSIjNjI1MGFkIiBvcGFjaXR5PSIuNTUiLz4KPHJlY3QgeD0iMTQyLjkiIHk9IjM1Mi4yIiB3aWR0aD0iOTQuMiIgaGVpZ2h0PSIxNi43IiByeD0iMiIgZmlsbD0iIzYyNTBhZCIgb3BhY2l0eT0iLjM1Ii8+Cjwvc3ZnPg==");
+  --p-toilet:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODAgNjE5IiB3aWR0aD0iMzgwIiBoZWlnaHQ9IjYxOSI+CjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM3YTYyYzIiIHN0b3Atb3BhY2l0eT0iLjk1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjN2E2MmMyIiBzdG9wLW9wYWNpdHk9Ii42MiIvPgo8L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KPHJlY3QgeD0iMTQ5LjkiIHk9IjAiIHdpZHRoPSI4MC4xIiBoZWlnaHQ9IjYxLjkiIHJ4PSIxNy42IiBmaWxsPSIjN2E2MmMyIiBvcGFjaXR5PSIuODUiLz4KPHJlY3QgeD0iMTYxLjIiIHk9IjU1LjciIHdpZHRoPSI1Ny43IiBoZWlnaHQ9IjQzLjMiIGZpbGw9IiM3YTYyYzIiIG9wYWNpdHk9Ii43Ii8+CjxyZWN0IHg9IjcyLjIiIHk9IjEyMy44IiB3aWR0aD0iMjM1LjYiIGhlaWdodD0iNDk1LjIiIHJ4PSIzNy43IiBmaWxsPSJ1cmwoI2cpIi8+CjxyZWN0IHg9IjEwMC41IiB5PSIyNzIuNCIgd2lkdGg9IjE3OS4xIiBoZWlnaHQ9IjE2OC40IiByeD0iMTEuOCIgZmlsbD0iI2ZhZjdmZCIgb3BhY2l0eT0iLjg4Ii8+CjxyZWN0IHg9IjEyOC43IiB5PSIzMjEuOSIgd2lkdGg9IjEyMi41IiBoZWlnaHQ9IjIyLjMiIHJ4PSIyIiBmaWxsPSIjN2E2MmMyIiBvcGFjaXR5PSIuNTUiLz4KPHJlY3QgeD0iMTQyLjkiIHk9IjM2Ni40IiB3aWR0aD0iOTQuMiIgaGVpZ2h0PSIxNy4zIiByeD0iMiIgZmlsbD0iIzdhNjJjMiIgb3BhY2l0eT0iLjM1Ii8+Cjwvc3ZnPg==");
+}
+#shopify-section-{{ section.id }} .pimg { display:block; background-repeat:no-repeat; background-position:center bottom; background-size:contain; flex:0 0 auto; }
+#shopify-section-{{ section.id }} .p-dish { background-image:var(--p-dish); aspect-ratio:0.624; }
+#shopify-section-{{ section.id }} .p-floor { background-image:var(--p-floor); aspect-ratio:0.6312; }
+#shopify-section-{{ section.id }} .p-kitchen { background-image:var(--p-kitchen); aspect-ratio:0.6387; }
+#shopify-section-{{ section.id }} .p-laundry { background-image:var(--p-laundry); aspect-ratio:0.6302; }
+#shopify-section-{{ section.id }} .p-tap { background-image:var(--p-tap); aspect-ratio:0.6387; }
+#shopify-section-{{ section.id }} .p-toilet { background-image:var(--p-toilet); aspect-ratio:0.6139; }
+
+#shopify-section-{{ section.id }} .rot { position:relative; padding:18px 12px 16px; border-radius:22px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+#shopify-section-{{ section.id }} .rot .frame { position:relative; width:100%; height:206px; }
+#shopify-section-{{ section.id }} .rot .frame .pimg { position:absolute; left:50%; top:50%; height:196px; opacity:0; transform:translate(-50%,-42%) scale(.94); transition:opacity .75s var(--ease),transform .75s var(--ease); filter:drop-shadow(0 11px 17px rgba(0,74,66,.14)); }
+#shopify-section-{{ section.id }} .rot .frame .pimg.on { opacity:1; transform:translate(-50%,-50%) scale(1); }
+#shopify-section-{{ section.id }} .rot .cap { margin-top:12px; text-align:center; min-height:32px; }
+#shopify-section-{{ section.id }} .rot .cap b { display:block; font-family:'Outfit',sans-serif; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--surface); }
+#shopify-section-{{ section.id }} .rot .cap span { display:block; font-size:11px; color:var(--paper-3); margin-top:3px; }
+#shopify-section-{{ section.id }} .rot .dots { display:flex; gap:6px; justify-content:center; margin-top:12px; }
+#shopify-section-{{ section.id }} .rot .dots i { width:5px; height:5px; border-radius:50%; background:rgba(75,58,143,.22); transition:.4s var(--ease); }
+#shopify-section-{{ section.id }} .rot .dots i.on { background:#b8701c; width:17px; border-radius:999px; }
+
+/* Button */
+#shopify-section-{{ section.id }} .btn { display:inline-flex; align-items:center; gap:10px; height:46px; padding:0 22px; border-radius:999px; font-size:12.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; transition:.35s var(--ease); white-space:nowrap; }
+#shopify-section-{{ section.id }} .btn-primary { background:linear-gradient(135deg,#00706a,#004b46); color:#f4fdf6; box-shadow:0 12px 26px rgba(0,80,74,.26),inset 0 1px 0 rgba(255,255,255,.22); }
+#shopify-section-{{ section.id }} .btn-primary:hover { box-shadow:0 18px 36px rgba(0,80,74,.32),inset 0 1px 0 rgba(255,255,255,.28); transform:translateY(-2px); }
+
+@media(max-width:760px){
+  #shopify-section-{{ section.id }} .rot .frame { height:172px; }
+  #shopify-section-{{ section.id }} .rot .frame .pimg { height:164px; }
+  #shopify-section-{{ section.id }} .stat .ring { width:64px; height:64px; font-size:16.5px; }
+}
+#shopify-section-{{ section.id }} .rv { opacity:1; transform:none; filter:none; }
+</style>
+
+<section class="sec" id="proof-{{ section.id }}">
+  <div class="wrap">
+    <div class="glass sec-pad rv">
+      <div class="proof">
+        <div class="proof-l">
+          <span class="kicker">{{ section.settings.kicker }}</span>
+          <h2 class="d2" style="margin-top:12px">{{ section.settings.heading }}</h2>
+          <p class="body-s">{{ section.settings.text }}</p>
+          <a class="btn btn-primary" href="{{ section.settings.btn_link }}">{{ section.settings.btn_text }}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
+          </a>
+        </div>
+        
+        <div class="glass-2 rot" id="rot" aria-hidden="true">
+          <div class="frame">
+            <span class="pimg p-kitchen on" role="img" aria-label="Purelane foaming kitchen cleaner" data-name="Kitchen cleaner" data-note="Foam lifts grease, no scrubbing"></span>
+            <span class="pimg p-tap" role="img" aria-label="Purelane tap cleaner and limescale remover" data-name="Tap &amp; limescale" data-note="Melts hard water stains"></span>
+            <span class="pimg p-laundry" role="img" aria-label="Purelane non-toxic laundry detergent" data-name="Laundry detergent" data-note="Tough on odour, soft on fabric"></span>
+            <span class="pimg p-toilet" role="img" aria-label="Purelane non-toxic toilet cleaner" data-name="Toilet cleaner" data-note="Kills 99.9% of germs"></span>
+            <span class="pimg p-floor" role="img" aria-label="Purelane natural herbal floor cleaner" data-name="Floor cleaner" data-note="Neem powered, pet safe"></span>
+            <span class="pimg p-dish" role="img" aria-label="Purelane organic dishwash liquid gel" data-name="Dishwash gel" data-note="Cuts grease, kind to hands"></span>
+          </div>
+          <div class="cap"><b>Kitchen cleaner</b><span>Foam lifts grease, no scrubbing</span></div>
+          <div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      
+      <div class="glass-2 stats proof-stats">
+        {%- for block in section.blocks -%}
+          <div class="stat" {{ block.shopify_attributes }}>
+            <div class="ring">{{ block.settings.value }}</div>
+            <h5>{{ block.settings.title }}</h5>
+            <p>{{ block.settings.text }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var rot = document.querySelector('#shopify-section-{{ section.id }} #rot');
+    if (rot) {
+      var rimgs = [].slice.call(rot.querySelectorAll('.frame .pimg'));
+      var rdots = [].slice.call(rot.querySelectorAll('.dots i'));
+      var rcapB = rot.querySelector('.cap b');
+      var rcapS = rot.querySelector('.cap span');
+      var ri = 0, rtimer = null;
+      function rstep() {
+        rimgs[ri].classList.remove('on');
+        if (rdots[ri]) rdots[ri].classList.remove('on');
+        ri = (ri + 1) % rimgs.length;
+        rimgs[ri].classList.add('on');
+        if (rdots[ri]) rdots[ri].classList.add('on');
+        rcapB.innerHTML = rimgs[ri].getAttribute('data-name');
+        rcapS.textContent = rimgs[ri].getAttribute('data-note');
+      }
+      
+      var rio = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting && !rtimer) rtimer = setInterval(rstep, 2900);
+          else if (!e.isIntersecting && rtimer) { clearInterval(rtimer); rtimer = null; }
+        });
+      }, { threshold: 0.25 });
+      rio.observe(rot);
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Purelane Proof",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Why it works"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Tough on grime.<br>Gentle on everything else."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Every formula is built on plant-derived cleansers and essential oils. It behaves exactly like the cleaner you are used to, minus the things you never signed up for."
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "See the ingredient list"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Statistic",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value (e.g. 99.9%)",
+          "default": "99.9%"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Germ kill"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Description",
+          "default": "Tested against germs and bacteria"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Proof",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "value": "99.9%",
+            "title": "Germ kill",
+            "text": "Tested against germs and bacteria"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "0%",
+            "title": "Sulphates",
+            "text": "No SLS, chlorine or parabens"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "100%",
+            "title": "Plant based",
+            "text": "Cleansers derived from plants"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "4.8",
+            "title": "Rated",
+            "text": "Across 8,000+ verified reviews"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
