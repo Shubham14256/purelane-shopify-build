@@ -1,0 +1,120 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+#shopify-section-{{ section.id }} {
+  --ink:#f4f0fb; --brand:#4b3a8f; --paper:#241a3d; --paper-2:rgba(36,26,61,.78);
+  --paper-3:rgba(36,26,61,.56); --accent:#b8701c; --surface:#17102b;
+  --sec-y:34px; --maxw:1180px; --ease:cubic-bezier(.2,.7,.2,1);
+  --g-bg:linear-gradient(158deg,rgba(255,255,255,.80),rgba(236,230,247,.56) 58%,rgba(222,212,240,.50));
+  --g-inset:inset 0 1px 0 rgba(255,255,255,.92);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+#shopify-section-{{ section.id }} * { box-sizing:border-box; margin:0; padding:0; }
+#shopify-section-{{ section.id }} .wrap { max-width:var(--maxw); margin:0 auto; padding:0 18px; }
+#shopify-section-{{ section.id }} button { font-family:inherit; cursor:pointer; border:none; background:none; color:inherit; }
+
+#shopify-section-{{ section.id }} .sec { position:relative; padding:var(--sec-y) 0; }
+#shopify-section-{{ section.id }} .glass { background:var(--g-bg); backdrop-filter:blur(24px) saturate(150%); border:1px solid rgba(75,58,143,.16); border-radius:26px; box-shadow:0 22px 54px rgba(58,44,112,.13), var(--g-inset); position:relative; overflow:hidden; }
+
+#shopify-section-{{ section.id }} .kicker { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--paper-3); }
+#shopify-section-{{ section.id }} .d2 { font-family:'Outfit',sans-serif; text-transform:uppercase; letter-spacing:-.018em; font-weight:800; font-size:clamp(30px,4.6vw,54px); line-height:.94; color:var(--surface); }
+#shopify-section-{{ section.id }} .lede { font-size:clamp(15px,1.35vw,17.5px); color:var(--paper-2); max-width:44ch; }
+
+/* Signup specific */
+#shopify-section-{{ section.id }} .signup { padding:clamp(28px,4vw,46px); text-align:center; }
+#shopify-section-{{ section.id }} .signup .d2 { margin-bottom:12px; }
+#shopify-section-{{ section.id }} .signup form { display:flex; gap:9px; max-width:430px; margin:22px auto 0; flex-wrap:wrap; justify-content:center; }
+#shopify-section-{{ section.id }} .signup input { flex:1; min-width:180px; height:46px; padding:0 18px; border-radius:999px; font-size:14px; font-family:inherit; color:#01423b; background:rgba(255,255,255,.72); border:1px solid rgba(75,58,143,.20); }
+#shopify-section-{{ section.id }} .signup input::placeholder { color:var(--paper-3); }
+#shopify-section-{{ section.id }} .signup input:focus { outline:none; border-color:#b8701c; background:#fff; }
+
+#shopify-section-{{ section.id }} .btn-primary { display:inline-flex; align-items:center; gap:10px; height:46px; padding:0 22px; border-radius:999px; font-size:12.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; transition:.35s var(--ease); white-space:nowrap; background:linear-gradient(135deg,#00706a,#004b46); color:#f4fdf6; box-shadow:0 12px 26px rgba(0,80,74,.26),inset 0 1px 0 rgba(255,255,255,.22); }
+#shopify-section-{{ section.id }} .btn-primary:hover { box-shadow:0 18px 36px rgba(0,80,74,.32),inset 0 1px 0 rgba(255,255,255,.28); transform:translateY(-2px); }
+
+/* Entrance Animation Setup */
+#shopify-section-{{ section.id }} .rv { opacity:0; transform:translateY(30px); filter:blur(7px); transition:opacity .95s var(--ease),transform .95s var(--ease),filter .95s var(--ease); }
+#shopify-section-{{ section.id }} .rv.in { opacity:1; transform:none; filter:none; }
+</style>
+
+<section class="sec" id="signup-{{ section.id }}">
+  <div class="wrap">
+    <div class="glass signup rv">
+      <div style="margin-bottom:12px;"><span class="kicker">{{ section.settings.kicker }}</span></div>
+      <h2 class="d2">{{ section.settings.heading }}</h2>
+      <p class="lede" style="margin:0 auto">{{ section.settings.subheading }}</p>
+      
+      {% form 'customer' %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input type="email" name="contact[email]" placeholder="{{ section.settings.placeholder }}" aria-label="Email address" required>
+        <button class="btn-primary" type="submit">{{ section.settings.btn_text }}</button>
+        {%- if form.posted_successfully? -%}
+          <p style="color: #4f7d10; margin-top: 10px; font-size: 14px; width: 100%;">Thanks for subscribing!</p>
+        {%- endif -%}
+      {% endform %}
+      
+    </div>
+  </div>
+</section>
+
+<!-- Scroll Animation Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var revs = document.querySelectorAll('#signup-{{ section.id }} .rv');
+    if ('IntersectionObserver' in window) {
+      var ro = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { 
+          if (e.isIntersecting) { 
+            e.target.classList.add('in'); 
+            ro.unobserve(e.target); 
+          } 
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+      revs.forEach(function (el) { ro.observe(el); });
+    } else {
+      revs.forEach(function (el) { el.classList.add('in'); });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Purelane Signup",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Join the Purelane Club"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Get ₹100 off your first bundle"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Plus first access to new launches and restocks."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Input Placeholder",
+      "default": "your@email.com"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "Get my ₹100 off"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Signup"
+    }
+  ]
+}
+{% endschema %}

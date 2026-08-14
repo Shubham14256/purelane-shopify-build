@@ -1,0 +1,60 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+#shopify-section-{{ section.id }} .ticker { 
+  position:relative; z-index:40; overflow:hidden; white-space:nowrap; 
+  font-size:11.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+  background:rgba(255,255,255,.74); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); 
+  border-bottom:1px solid rgba(75,58,143,.12); color:rgba(36,26,61,.78); 
+  font-family: 'Inter', sans-serif;
+}
+#shopify-section-{{ section.id }} .ticker .track { 
+  display:inline-flex; gap:40px; padding:9px 20px; animation:tick 30s linear infinite; 
+}
+#shopify-section-{{ section.id }} .ticker b { color:#4f7d10; font-weight:700; }
+@keyframes tick { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+</style>
+
+<div class="ticker" aria-hidden="true">
+  <div class="track">
+    {%- for block in section.blocks -%}
+      <span>{{ block.settings.text }}</span>
+    {%- endfor -%}
+    {%- comment -%}Repeat blocks to create infinite seamless loop{%- endcomment -%}
+    {%- for block in section.blocks -%}
+      <span>{{ block.settings.text }}</span>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Purelane Ticker",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Ticker Text",
+      "settings": [
+        {
+          "type": "html",
+          "id": "text",
+          "label": "Text (Use <b> tag for green text)",
+          "default": "Free shipping <b>on every bundle across India</b>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Ticker",
+      "blocks": [
+        { "type": "text", "settings": { "text": "Free shipping <b>on every bundle across India</b>" } },
+        { "type": "text", "settings": { "text": "100% plant-based <b>and non-toxic</b>" } },
+        { "type": "text", "settings": { "text": "Loved by <b>30,000+ happy homes</b>" } },
+        { "type": "text", "settings": { "text": "Buy 3 <b>at flat ₹499</b>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

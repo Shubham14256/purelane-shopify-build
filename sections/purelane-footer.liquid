@@ -1,0 +1,192 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+#shopify-section-{{ section.id }} {
+  --ink:#f4f0fb; --brand:#4b3a8f; --paper:#241a3d; --paper-2:rgba(36,26,61,.78);
+  --paper-3:rgba(36,26,61,.56); --accent:#b8701c; --surface:#17102b;
+  --sec-y:34px; --maxw:1180px; --ease:cubic-bezier(.2,.7,.2,1);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+#shopify-section-{{ section.id }} * { box-sizing:border-box; margin:0; padding:0; }
+#shopify-section-{{ section.id }} .wrap { max-width:var(--maxw); margin:0 auto; padding:0 18px; }
+#shopify-section-{{ section.id }} a { color:inherit; text-decoration:none; }
+
+/* ---------- FOOTER ---------- */
+#shopify-section-{{ section.id }} footer { position:relative; z-index:2; margin-top:var(--sec-y); padding:44px 0 30px; background:linear-gradient(180deg,rgba(255,255,255,.62),rgba(214,241,221,.90)); border-top:1px solid rgba(75,58,143,.13); }
+#shopify-section-{{ section.id }} .fgrid { display:grid; gap:28px; grid-template-columns:1fr; }
+@media(min-width:760px){ #shopify-section-{{ section.id }} .fgrid { grid-template-columns:1.3fr 1fr 1fr 1fr; } }
+
+#shopify-section-{{ section.id }} .brand { display:flex; align-items:center; gap:11px; flex:0 0 auto; margin-bottom:16px; }
+#shopify-section-{{ section.id }} .brand .mark { width:40px; height:40px; border-radius:50%; display:grid; place-items:center; flex:0 0 auto; background:linear-gradient(150deg,rgba(201,118,29,.20),rgba(75,58,143,.14)); border:1px solid rgba(75,58,143,.18); }
+#shopify-section-{{ section.id }} .brand .mark svg { width:23px; height:23px; color:#b8701c; }
+#shopify-section-{{ section.id }} .brand .txt { line-height:1.05; }
+#shopify-section-{{ section.id }} .brand .n1 { display:block; font-family:'Outfit',sans-serif; font-weight:800; font-size:16.5px; line-height:1.06; letter-spacing:.02em; text-transform:uppercase; color:var(--surface); }
+#shopify-section-{{ section.id }} .brand .n2 { display:block; font-size:8.5px; font-weight:600; line-height:1.3; letter-spacing:.28em; text-transform:uppercase; color:var(--paper-3); }
+
+#shopify-section-{{ section.id }} .fcol h5 { font-family:'Outfit',sans-serif; font-size:11px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:#4f7d10; margin-bottom:14px; }
+#shopify-section-{{ section.id }} .fcol a, #shopify-section-{{ section.id }} .fcol p { display:block; font-size:13.5px; color:var(--paper-2); margin-bottom:9px; transition:.25s; }
+#shopify-section-{{ section.id }} .fcol a:hover { color:var(--surface); transform:translateX(3px); }
+#shopify-section-{{ section.id }} .fbot { margin-top:32px; padding-top:20px; border-top:1px solid rgba(75,58,143,.11); display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; font-size:11.5px; color:var(--paper-3); }
+
+/* ---------- STICKY CTA ---------- */
+#shopify-section-{{ section.id }} .sticky { position:fixed; left:0; right:0; bottom:0; z-index:48; padding:10px 14px calc(10px + env(safe-area-inset-bottom)); background:rgba(255,255,255,.86); border-top:1px solid rgba(75,58,143,.14); display:flex; align-items:center; gap:12px; }
+#shopify-section-{{ section.id }} .sticky .lbl { line-height:1.2; }
+#shopify-section-{{ section.id }} .sticky .lbl b { display:block; font-family:'Outfit',sans-serif; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--surface); }
+#shopify-section-{{ section.id }} .sticky .lbl span { font-size:10.5px; color:var(--paper-3); }
+#shopify-section-{{ section.id }} .sticky .btn { margin-left:auto; display:inline-flex; align-items:center; gap:10px; height:38px; padding:0 18px; border-radius:999px; font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; transition:.35s var(--ease); white-space:nowrap; background:linear-gradient(135deg,#00706a,#004b46); color:#f4fdf6; box-shadow:0 12px 26px rgba(0,80,74,.26); }
+@media(min-width:960px){ #shopify-section-{{ section.id }} .sticky { display:none; } }
+</style>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div class="fcol">
+        <a class="brand" href="/">
+          <span class="mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/><path d="M12 21v-6"/></svg>
+          </span>
+          <span class="txt"><span class="n1">{{ section.settings.brand_name }}</span><span class="n2">{{ section.settings.brand_slogan }}</span></span>
+        </a>
+        <p style="max-width:30ch">{{ section.settings.brand_desc }}</p>
+      </div>
+      
+      <div class="fcol">
+        <h5>Shop</h5>
+        {% for link in linklists[section.settings.shop_menu].links %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% else %}
+          <a href="#shop">Bestsellers</a>
+          <a href="#shop">Kitchen</a>
+          <a href="#shop">Laundry</a>
+          <a href="#bundles">Starter kits</a>
+        {% endfor %}
+      </div>
+      
+      <div class="fcol">
+        <h5>About</h5>
+        {% for link in linklists[section.settings.about_menu].links %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% else %}
+          <a href="#how">How it works</a>
+          <a href="#ingredients">Sustainability</a>
+          <a href="#proof">FAQs</a>
+        {% endfor %}
+      </div>
+      
+      <div class="fcol">
+        <h5>Get in touch</h5>
+        <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+        <a href="tel:{{ section.settings.phone }}">{{ section.settings.phone }}</a>
+        <p style="font-size:12px;color:rgba(36,26,61,.5)">{{ section.settings.company_name }}</p>
+      </div>
+    </div>
+    
+    <div class="fbot">
+      <span>© {{ 'now' | date: "%Y" }} {{ section.settings.company_name }}</span>
+      <span>Privacy · Terms · Refunds · Contact</span>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky">
+  <span class="lbl"><b>{{ section.settings.sticky_title }}</b><span>{{ section.settings.sticky_subtitle }}</span></span>
+  <a class="btn" href="{{ section.settings.sticky_btn_link }}">{{ section.settings.sticky_btn_text }}</a>
+</div>
+
+{% schema %}
+{
+  "name": "Purelane Footer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Brand Info"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand Name",
+      "default": "Purelane"
+    },
+    {
+      "type": "text",
+      "id": "brand_slogan",
+      "label": "Brand Slogan",
+      "default": "Clean, simply"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_desc",
+      "label": "Brand Description",
+      "default": "Effective cleaning, powered by nature. Made for Indian homes since day one."
+    },
+    {
+      "type": "header",
+      "content": "Menus"
+    },
+    {
+      "type": "link_list",
+      "id": "shop_menu",
+      "label": "Shop Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "about_menu",
+      "label": "About Menu"
+    },
+    {
+      "type": "header",
+      "content": "Contact Info"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email",
+      "default": "hello@purelane.com"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone Number",
+      "default": "+91 9930 123 234"
+    },
+    {
+      "type": "text",
+      "id": "company_name",
+      "label": "Company Name",
+      "default": "Purelane Eco Products Private Limited"
+    },
+    {
+      "type": "header",
+      "content": "Sticky CTA (Mobile)"
+    },
+    {
+      "type": "text",
+      "id": "sticky_title",
+      "label": "Sticky Title",
+      "default": "Pick any 3, pay ₹499"
+    },
+    {
+      "type": "text",
+      "id": "sticky_subtitle",
+      "label": "Sticky Subtitle",
+      "default": "Free shipping, always"
+    },
+    {
+      "type": "text",
+      "id": "sticky_btn_text",
+      "label": "Sticky Button Text",
+      "default": "Build bundle"
+    },
+    {
+      "type": "url",
+      "id": "sticky_btn_link",
+      "label": "Sticky Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Footer"
+    }
+  ]
+}
+{% endschema %}

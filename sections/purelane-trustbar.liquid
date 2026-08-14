@@ -1,0 +1,106 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+#shopify-section-{{ section.id }} {
+  --ink:#f4f0fb; --brand:#4b3a8f; --paper:#241a3d; --paper-2:rgba(36,26,61,.78);
+  --paper-3:rgba(36,26,61,.56); --accent:#b8701c; --surface:#17102b;
+  --g-bg:linear-gradient(158deg,rgba(255,255,255,.80),rgba(236,230,247,.56) 58%,rgba(222,212,240,.50));
+  --sec-y:34px; --maxw:1180px;
+  --g-inset:inset 0 1px 0 rgba(255,255,255,.92);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+#shopify-section-{{ section.id }} * { box-sizing:border-box; margin:0; padding:0; }
+#shopify-section-{{ section.id }} .wrap { max-width:var(--maxw); margin:0 auto; padding:0 18px; }
+#shopify-section-{{ section.id }} .sec { position:relative; padding:var(--sec-y) 0; }
+
+#shopify-section-{{ section.id }} .glass { background:var(--g-bg); backdrop-filter:blur(24px) saturate(150%); border:1px solid rgba(75,58,143,.16); border-radius:26px; box-shadow:0 22px 54px rgba(58,44,112,.13), var(--g-inset); position:relative; overflow:hidden; }
+
+/* Trust Bar */
+#shopify-section-{{ section.id }} .trust { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; padding:6px; }
+@media(min-width:820px){ #shopify-section-{{ section.id }} .trust { grid-template-columns:repeat(4,1fr); } }
+
+#shopify-section-{{ section.id }} .trust-i { display:flex; align-items:center; gap:12px; padding:16px 14px; }
+#shopify-section-{{ section.id }} .trust-i svg { width:26px; height:26px; color:#4f7d10; flex:0 0 auto; }
+#shopify-section-{{ section.id }} .trust-i span { font-family:'Outfit',sans-serif; font-size:11px; font-weight:700; letter-spacing:.11em; text-transform:uppercase; color:var(--paper-2); line-height:1.32; }
+
+#shopify-section-{{ section.id }} .rv { opacity:1; transform:none; filter:none; }
+</style>
+
+<section class="sec" id="trustbar-{{ section.id }}">
+  <div class="wrap">
+    <div class="glass trust rv">
+      {%- for block in section.blocks -%}
+        <div class="trust-i" {{ block.shopify_attributes }}>
+          {%- if block.settings.icon_svg != blank -%}
+            {{ block.settings.icon_svg }}
+          {%- else -%}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.6"/><path d="M3.4 12h17.2M12 3.4c2.4 2.4 3.6 5.4 3.6 8.6S14.4 18.2 12 20.6c-2.4-2.4-3.6-5.4-3.6-8.6S9.6 5.8 12 3.4Z"/></svg>
+          {%- endif -%}
+          <span>{{ block.settings.text }}</span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Trust Bar",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "trust_icon",
+      "name": "Trust Icon",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "html",
+          "id": "icon_svg",
+          "label": "Icon SVG Code"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Made in<br>India"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Trust Bar",
+      "blocks": [
+        {
+          "type": "trust_icon",
+          "settings": {
+            "text": "Plant derived<br>formulas",
+            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z\"/><path d=\"M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z\"/></svg>"
+          }
+        },
+        {
+          "type": "trust_icon",
+          "settings": {
+            "text": "Recyclable<br>packaging",
+            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 8h16v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z\"/><path d=\"M4 8 6.5 3h11L20 8M9.5 12h5\"/></svg>"
+          }
+        },
+        {
+          "type": "trust_icon",
+          "settings": {
+            "text": "Safe for<br>kids & pets",
+            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 20s-7-4.4-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 2.6c0 5-7 9.4-7 9.4Z\"/></svg>"
+          }
+        },
+        {
+          "type": "trust_icon",
+          "settings": {
+            "text": "Made in<br>India",
+            "icon_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"8.6\"/><path d=\"M3.4 12h17.2M12 3.4c2.4 2.4 3.6 5.4 3.6 8.6S14.4 18.2 12 20.6c-2.4-2.4-3.6-5.4-3.6-8.6S9.6 5.8 12 3.4Z\"/></svg>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
