@@ -1,0 +1,199 @@
+<style>
+/* Scope styles directly to the section */
+#shopify-section-{{ section.id }} {
+  --ink:#f4f0fb; --brand:#4b3a8f; --paper:#241a3d; --paper-2:rgba(36,26,61,.78);
+  --paper-3:rgba(36,26,61,.56); --surface:#17102b;
+  --sec-y:34px; --maxw:1180px;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+#shopify-section-{{ section.id }} * { box-sizing:border-box; margin:0; padding:0; }
+
+#shopify-section-{{ section.id }} .wrap { max-width:var(--maxw); margin:0 auto; padding:0 18px; }
+#shopify-section-{{ section.id }} .kicker { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--paper-3); }
+
+/* Glass Effect for Cards */
+#shopify-section-{{ section.id }} .glass-2 {
+  background:linear-gradient(158deg,rgba(255,255,255,.66),rgba(236,230,247,.44));
+  border:1px solid rgba(75,58,143,.13); border-radius:18px;
+  box-shadow:0 16px 38px rgba(58,44,112,.10),inset 0 1px 0 rgba(255,255,255,.86);
+}
+
+/* Review Header */
+#shopify-section-{{ section.id }} .revband { padding:var(--sec-y) 0; }
+#shopify-section-{{ section.id }} .revhead { display:flex; align-items:center; justify-content:center; gap:10px 18px; flex-wrap:wrap; margin-bottom:14px; }
+#shopify-section-{{ section.id }} .revhead .agg { display:inline-flex; align-items:center; gap:8px; font-size:11.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--paper-2); }
+#shopify-section-{{ section.id }} .revhead .agg b { font-family:'Outfit',sans-serif; font-size:16px; color:#4f7d10; letter-spacing:0; }
+#shopify-section-{{ section.id }} .revhead .st { color:#7a9c1e; font-size:12px; letter-spacing:.16em; }
+
+/* Marquee Track */
+#shopify-section-{{ section.id }} .revrail {
+  overflow:hidden; position:relative;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+}
+#shopify-section-{{ section.id }} .revtrack { display:flex; gap:12px; width:max-content; animation:marq 52s linear infinite; }
+#shopify-section-{{ section.id }} .revrail:hover .revtrack, #shopify-section-{{ section.id }} .revrail:focus-within .revtrack { animation-play-state:paused; }
+@keyframes marq { from{transform:translate3d(0,0,0)} to{transform:translate3d(-50%,0,0)} }
+
+/* Cards */
+#shopify-section-{{ section.id }} .rcard { flex:0 0 auto; width:284px; padding:15px 17px; }
+#shopify-section-{{ section.id }} .rcard .st { color:#7a9c1e; font-size:10.5px; letter-spacing:.2em; margin-bottom:9px; }
+#shopify-section-{{ section.id }} .rcard h5 { font-family:'Outfit',sans-serif; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--surface); margin-bottom:7px; }
+#shopify-section-{{ section.id }} .rcard p { font-size:12.6px; color:var(--paper-2); line-height:1.52; margin-bottom:11px; }
+#shopify-section-{{ section.id }} .rcard .who { display:flex; align-items:center; gap:7px; font-size:9.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--paper-3); }
+#shopify-section-{{ section.id }} .rcard .who b { color:#01423b; font-weight:700; }
+#shopify-section-{{ section.id }} .rcard .who svg { width:12px; height:12px; color:#4f7d10; flex:0 0 auto; }
+
+@media(max-width:760px){
+  #shopify-section-{{ section.id }} .rcard { width:250px; padding:13px 14px; }
+  #shopify-section-{{ section.id }} .revtrack { animation-duration:40s; }
+}
+</style>
+
+<section class="sec revband" id="reviews-{{ section.id }}">
+  <div class="wrap">
+    <div class="revhead">
+      <span class="kicker">{{ section.settings.kicker }}</span>
+      <span class="agg"><span class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <b>{{ section.settings.rating_score }}</b> {{ section.settings.rating_text }}</span>
+      <span class="agg">Loved by <b>{{ section.settings.homes_count }}</b> homes</span>
+    </div>
+  </div>
+  
+  <div class="revrail" aria-label="Customer reviews">
+    <div class="revtrack">
+      {%- comment -%} 
+        Looping twice (1..2) to ensure the marquee has enough items to scroll seamlessly
+      {%- endcomment -%}
+      {%- for i in (1..2) -%}
+        {%- for block in section.blocks -%}
+          <article class="glass-2 rcard" {{ block.shopify_attributes }}>
+            <div class="st">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <h5>{{ block.settings.title }}</h5>
+            <p>{{ block.settings.body }}</p>
+            <div class="who">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
+              <b>{{ block.settings.author }}</b>
+              <span>&middot; {{ block.settings.product_name }}</span>
+            </div>
+          </article>
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Reviews Marquee",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Small Header (Kicker)",
+      "default": "That's what they said"
+    },
+    {
+      "type": "text",
+      "id": "rating_score",
+      "label": "Rating Score",
+      "default": "4.8"
+    },
+    {
+      "type": "text",
+      "id": "rating_text",
+      "label": "Rating Text",
+      "default": "from 8,000+ reviews"
+    },
+    {
+      "type": "text",
+      "id": "homes_count",
+      "label": "Homes Count",
+      "default": "12 lakh+"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Review Title",
+          "default": "Works like a charm"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Review Body",
+          "default": "Finally an eco option that cleans as well as the chemical detergent I used for years, and it smells better."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Customer Name",
+          "default": "Anita"
+        },
+        {
+          "type": "text",
+          "id": "product_name",
+          "label": "Product Purchased",
+          "default": "Laundry detergent"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Reviews Marquee",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "title": "Works like a charm",
+            "body": "Finally an eco option that cleans as well as the chemical detergent I used for years, and it smells better.",
+            "author": "Anita",
+            "product_name": "Laundry detergent"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "title": "Best dishwash ever",
+            "body": "Our old dishwash left my help with dry, cracked skin. That stopped completely after we switched.",
+            "author": "Priya",
+            "product_name": "Dishwash gel"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "title": "Great product, great packaging",
+            "body": "Very soft on hands with a lovely fragrance, and it feels good to be using far less plastic.",
+            "author": "Sunita",
+            "product_name": "Liquid handwash"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "title": "Dog friendly",
+            "body": "We switched because chemical floor cleaners were setting off my dog's allergies. No reactions since.",
+            "author": "Rohit S.",
+            "product_name": "Floor cleaner"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "title": "Sparkling taps again",
+            "body": "Hard water had ruined our bathroom fittings. Two sprays and the scale wipes straight off, no scrubbing.",
+            "author": "Verified buyer",
+            "product_name": "Tap cleaner"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
