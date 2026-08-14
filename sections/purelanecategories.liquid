@@ -1,0 +1,148 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+#shopify-section-{{ section.id }} {
+  --ink:#f4f0fb; --brand:#4b3a8f; --paper:#241a3d; --paper-2:rgba(36,26,61,.78);
+  --paper-3:rgba(36,26,61,.56); --accent:#b8701c; --surface:#17102b;
+  --g-bg:linear-gradient(158deg,rgba(255,255,255,.80),rgba(236,230,247,.56) 58%,rgba(222,212,240,.50));
+  --sec-y:34px; --maxw:1180px; --ease:cubic-bezier(.2,.7,.2,1);
+  --g-inset:inset 0 1px 0 rgba(255,255,255,.92);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* BASE 64 IMAGES FOR BUNDLE CATEGORIES */
+  --p-kitchen:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODAgNTk1IiB3aWR0aD0iMzgwIiBoZWlnaHQ9IjU5NSI+CjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM2YjU1YjgiIHN0b3Atb3BhY2l0eT0iLjk1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNmI1NWI4IiBzdG9wLW9wYWNpdHk9Ii42MiIvPgo8L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KPHJlY3QgeD0iMTQ5LjkiIHk9IjAiIHdpZHRoPSI4MC4xIiBoZWlnaHQ9IjU5LjUiIHJ4PSIxNy42IiBmaWxsPSIjNmI1NWI4IiBvcGFjaXR5PSIuODUiLz4KPHJlY3QgeD0iMTYxLjIiIHk9IjUzLjYiIHdpZHRoPSI1Ny43IiBoZWlnaHQ9IjQxLjciIGZpbGw9IiM2YjU1YjgiIG9wYWNpdHk9Ii43Ii8+CjxyZWN0IHg9IjcyLjIiIHk9IjExOS4wIiB3aWR0aD0iMjM1LjYiIGhlaWdodD0iNDc2LjAiIHJ4PSIzNy43IiBmaWxsPSJ1cmwoI2cpIi8+CjxyZWN0IHg9IjEwMC41IiB5PSIyNjEuOCIgd2lkdGg9IjE3OS4xIiBoZWlnaHQ9IjE2MS44IiByeD0iMTEuOCIgZmlsbD0iI2ZhZjdmZCIgb3BhY2l0eT0iLjg4Ii8+CjxyZWN0IHg9IjEyOC43IiB5PSIzMDkuNCIgd2lkdGg9IjEyMi41IiBoZWlnaHQ9IjIxLjQiIHJ4PSIyIiBmaWxsPSIjNmI1NWI4IiBvcGFjaXR5PSIuNTUiLz4KPHJlY3QgeD0iMTQyLjkiIHk9IjM1Mi4yIiB3aWR0aD0iOTQuMiIgaGVpZ2h0PSIxNi43IiByeD0iMiIgZmlsbD0iIzZiNTViOCIgb3BhY2l0eT0iLjM1Ii8+Cjwvc3ZnPg==");
+  --p-toilet:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODAgNjE5IiB3aWR0aD0iMzgwIiBoZWlnaHQ9IjYxOSI+CjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM3YTYyYzIiIHN0b3Atb3BhY2l0eT0iLjk1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjN2E2MmMyIiBzdG9wLW9wYWNpdHk9Ii42MiIvPgo8L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KPHJlY3QgeD0iMTQ5LjkiIHk9IjAiIHdpZHRoPSI4MC4xIiBoZWlnaHQ9IjYxLjkiIHJ4PSIxNy42IiBmaWxsPSIjN2E2MmMyIiBvcGFjaXR5PSIuODUiLz4KPHJlY3QgeD0iMTYxLjIiIHk9IjU1LjciIHdpZHRoPSI1Ny43IiBoZWlnaHQ9IjQzLjMiIGZpbGw9IiM3YTYyYzIiIG9wYWNpdHk9Ii43Ii8+CjxyZWN0IHg9IjcyLjIiIHk9IjEyMy44IiB3aWR0aD0iMjM1LjYiIGhlaWdodD0iNDk1LjIiIHJ4PSIzNy43IiBmaWxsPSJ1cmwoI2cpIi8+CjxyZWN0IHg9IjEwMC41IiB5PSIyNzIuNCIgd2lkdGg9IjE3OS4xIiBoZWlnaHQ9IjE2OC40IiByeD0iMTEuOCIgZmlsbD0iI2ZhZjdmZCIgb3BhY2l0eT0iLjg4Ii8+CjxyZWN0IHg9IjEyOC43IiB5PSIzMjEuOSIgd2lkdGg9IjEyMi41IiBoZWlnaHQ9IjIyLjMiIHJ4PSIyIiBmaWxsPSIjN2E2MmMyIiBvcGFjaXR5PSIuNTUiLz4KPHJlY3QgeD0iMTQyLjkiIHk9IjM2Ni40IiB3aWR0aD0iOTQuMiIgaGVpZ2h0PSIxNy4zIiByeD0iMiIgZmlsbD0iIzdhNjJjMiIgb3BhY2l0eT0iLjM1Ii8+Cjwvc3ZnPg==");
+  --p-laundry:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODAgNjAzIiB3aWR0aD0iMzgwIiBoZWlnaHQ9IjYwMyI+CjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM1YTQ2YTMiIHN0b3Atb3BhY2l0eT0iLjk1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNWE0NmEzIiBzdG9wLW9wYWNpdHk9Ii42MiIvPgo8L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KPHJlY3QgeD0iMTQ5LjkiIHk9IjAiIHdpZHRoPSI4MC4xIiBoZWlnaHQ9IjYwLjMiIHJ4PSIxNy42IiBmaWxsPSIjNWE0NmEzIiBvcGFjaXR5PSIuODUiLz4KPHJlY3QgeD0iMTYxLjIiIHk9IjU0LjMkeWlkdGg9IjU3LjciIGhlaWdodD0iNDIuMiIgZmlsbD0iIzVhNDZhMyIgb3BhY2l0eT0iLjciLz4KPHJlY3QgeD0iNzIuMiIgeT0iMTIwLjYiIHdpZHRoPSIyMzUuNiIgaGVpZ2h0PSI0ODIuNCIgcng9IjM3LjciIGZpbGw9InVybCgjZykiLz4KPHJlY3QgeD0iMTAwLjUiIHk9IjI2NS4zIiB3aWR0aD0iMTc5LjEiIGhlaWdodD0iMTY0LjAiIHJ4PSIxMS44IiBmaWxsPSIjZmFmN2ZkIiBvcGFjaXR5PSIuODgiLz4KPHJlY3QgeD0iMTI4LjciIHk9IjMxMy42IiB3aWR0aD0iMTIyLjUiIGhlaWdodD0iMjEuNyIgcng9IjIiIGZpbGw9IiM1YTQ2YTMiIG9wYWNpdHk9Ii41NSIvPgo8cmVjdCB4PSIxNDIuOSIgeT0iMzU3LjAiIHdpZHRoPSI5NC4yIiBoZWlnaHQ9IjE2LjkiIHJ4PSIyIiBmaWxsPSIjNWE0NmEzIiBvcGFjaXR5PSIuMzUiLz4KPC9zdmc+");
+  --p-tap:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzODAgNTk1IiB3aWR0aD0iMzgwIiBoZWlnaHQ9IjU5NSI+CjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgo8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM2MjUwYWQiIHN0b3Atb3BhY2l0eT0iLjk1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNjI1MGFkIiBzdG9wLW9wYWNpdHk9Ii42MiIvPgo8L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KPHJlY3QgeD0iMTQ5LjkiIHk9IjAiIHdpZHRoPSI4MC4xIiBoZWlnaHQ9IjU5LjUiIHJ4PSIxNy42IiBmaWxsPSIjNjI1MGFkIiBvcGFjaXR5PSIuODUiLz4KPHJlY3QgeD0iMTYxLjIiIHk9IjUzLjYiIHdpZHRoPSI1Ny43IiBoZWlnaHQ9IjQxLjciIGZpbGw9IiM2MjUwYWQiIG9wYWNpdHk9Ii43Ii8+CjxyZWN0IHg9IjcyLjIiIHk9IjExOS4wIiB3aWR0aD0iMjM1LjYiIGhlaWdodD0iNDc2LjAiIHJ4PSIzNy43IiBmaWxsPSJ1cmwoI2cpIi8+CjxyZWN0IHg9IjEwMC41IiB5PSIyNjEuOCIgd2lkdGg9IjE3OS4xIiBoZWlnaHQ9IjE2MS44IiByeD0iMTEuOCIgZmlsbD0iI2ZhZjdmZCIgb3BhY2l0eT0iLjg4Ii8+CjxyZWN0IHg9IjEyOC43IiB5PSIzMDkuNCIgd2lkdGg9IjEyMi41IiBoZWlnaHQ9IjIxLjQiIHJ4PSIyIiBmaWxsPSIjNjI1MGFkIiBvcGFjaXR5PSIuNTUiLz4KPHJlY3QgeD0iMTQyLjkiIHk9IjM1Mi4yIiB3aWR0aD0iOTQuMiIgaGVpZ2h0PSIxNi43IiByeD0iMiIgZmlsbD0iIzYyNTBhZCIgb3BhY2l0eT0iLjM1Ii8+Cjwvc3ZnPg==");
+}
+#shopify-section-{{ section.id }} * { box-sizing:border-box; margin:0; padding:0; }
+#shopify-section-{{ section.id }} .wrap { max-width:var(--maxw); margin:0 auto; padding:0 18px; }
+#shopify-section-{{ section.id }} a { color:inherit; text-decoration:none; }
+#shopify-section-{{ section.id }} .sec { position:relative; padding:var(--sec-y) 0; }
+
+#shopify-section-{{ section.id }} .panel-head { text-align:center; margin-bottom:26px; }
+#shopify-section-{{ section.id }} .kicker { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--paper-3); }
+#shopify-section-{{ section.id }} .d2 { font-family:'Outfit',sans-serif; text-transform:uppercase; letter-spacing:-.018em; font-weight:800; font-size:clamp(30px,4.6vw,54px); line-height:.94; color:var(--surface); margin-bottom:12px; }
+
+#shopify-section-{{ section.id }} .glass { background:var(--g-bg); backdrop-filter:blur(24px) saturate(150%); border:1px solid rgba(75,58,143,.16); border-radius:26px; box-shadow:0 22px 54px rgba(58,44,112,.13), var(--g-inset); position:relative; overflow:hidden; }
+
+/* Categories Grid */
+#shopify-section-{{ section.id }} .cats { display:grid; gap:14px; grid-template-columns:repeat(2,1fr); }
+@media(min-width:900px){ #shopify-section-{{ section.id }} .cats { grid-template-columns:repeat(4,1fr); } }
+
+#shopify-section-{{ section.id }} .cat { padding:0; display:flex; flex-direction:column; transition:.4s var(--ease); }
+#shopify-section-{{ section.id }} .cat:hover { transform:translateY(-5px); }
+#shopify-section-{{ section.id }} .cat .ph { height:194px; display:flex; align-items:flex-end; justify-content:center; padding:14px 12px 0; position:relative; }
+#shopify-section-{{ section.id }} .cat .ph::before { content:""; position:absolute; inset:0; background:radial-gradient(110% 80% at 50% 6%,rgba(255,255,255,.66),rgba(236,230,247,.30) 58%,transparent 80%); }
+
+/* Setup the SVGs to show up inside .pimg class */
+#shopify-section-{{ section.id }} .pimg { display:block; background-repeat:no-repeat; background-position:center bottom; background-size:contain; flex:0 0 auto; position:relative; height:176px; filter:drop-shadow(0 10px 15px rgba(0,74,66,.14)); }
+#shopify-section-{{ section.id }} .p-kitchen { background-image:var(--p-kitchen); aspect-ratio:0.6387; }
+#shopify-section-{{ section.id }} .p-toilet { background-image:var(--p-toilet); aspect-ratio:0.6139; }
+#shopify-section-{{ section.id }} .p-laundry { background-image:var(--p-laundry); aspect-ratio:0.6302; }
+#shopify-section-{{ section.id }} .p-tap { background-image:var(--p-tap); aspect-ratio:0.6387; }
+    
+#shopify-section-{{ section.id }} .cat .txt { padding:14px 16px 18px; border-top:1px solid rgba(75,58,143,.11); }
+#shopify-section-{{ section.id }} .cat .txt h4 { font-family:'Outfit',sans-serif; font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; color:var(--surface); margin-bottom:5px; }
+#shopify-section-{{ section.id }} .cat .txt p { font-size:11.8px; color:var(--paper-3); }
+
+@media(max-width:760px){
+  #shopify-section-{{ section.id }} .cat .ph { height:158px; }
+  #shopify-section-{{ section.id }} .cat .ph .pimg { height:142px; }
+}
+
+/* Entrance Animation Setup */
+#shopify-section-{{ section.id }} .rv { opacity:0; transform:translateY(30px); filter:blur(7px); transition:opacity .95s var(--ease),transform .95s var(--ease),filter .95s var(--ease); }
+#shopify-section-{{ section.id }} .rv.in { opacity:1; transform:none; filter:none; }
+#shopify-section-{{ section.id }} .rv-d1 { transition-delay:.09s; }
+#shopify-section-{{ section.id }} .rv-d2 { transition-delay:.18s; }
+#shopify-section-{{ section.id }} .rv-d3 { transition-delay:.27s; }
+</style>
+
+<section class="sec" id="categories-{{ section.id }}">
+  <div class="wrap">
+    <div class="panel-head rv">
+      <span class="kicker">{{ section.settings.kicker }}</span>
+      <h2 class="d2" style="margin-top:12px">{{ section.settings.heading }}</h2>
+    </div>
+    
+    <div class="cats">
+      {%- if section.settings.use_original_cards -%}
+        <!-- HARDCODED 4 ORIGINAL CATEGORY CARDS FOR 100% DESIGN ACCURACY -->
+        <a class="glass cat rv" href="#combos">
+          <span class="ph"><span class="pimg p-kitchen" role="img" aria-label="Kitchen Bundle"></span></span>
+          <span class="txt"><h4>Kitchen bundle</h4><p>Grease, dishes &amp; more</p></span>
+        </a>
+        <a class="glass cat rv rv-d1" href="#combos">
+          <span class="ph"><span class="pimg p-toilet" role="img" aria-label="Bathroom Bundle"></span></span>
+          <span class="txt"><h4>Bathroom bundle</h4><p>Deep clean &amp; disinfect</p></span>
+        </a>
+        <a class="glass cat rv rv-d2" href="#combos">
+          <span class="ph"><span class="pimg p-laundry" role="img" aria-label="Laundry Bundle"></span></span>
+          <span class="txt"><h4>Laundry bundle</h4><p>Softer, fresher wash</p></span>
+        </a>
+        <a class="glass cat rv rv-d3" href="#combos">
+          <span class="ph"><span class="pimg p-tap" role="img" aria-label="Hard Water Bundle"></span></span>
+          <span class="txt"><h4>Hard water bundle</h4><p>Melt away limescale</p></span>
+        </a>
+      {%- else -%}
+        <!-- DYNAMIC BLOCKS IF MERCHANT UNCHECKS THE BOX -->
+        {%- for block in section.blocks -%}
+          <!-- dynamic code hiding -->
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<!-- Scroll Animation Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var revs = document.querySelectorAll('#categories-{{ section.id }} .rv');
+    if ('IntersectionObserver' in window) {
+      var ro = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { 
+          if (e.isIntersecting) { 
+            e.target.classList.add('in'); 
+            ro.unobserve(e.target); 
+          } 
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+      revs.forEach(function (el) { ro.observe(el); });
+    } else {
+      revs.forEach(function (el) { el.classList.add('in'); });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Purelane Categories",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Bundle categories"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Find the right bundle for you"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_original_cards",
+      "label": "Use Original 4 Tiers Design",
+      "default": true,
+      "info": "Leave this checked to automatically render the original HTML categories perfectly with SVG bottles."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Categories"
+    }
+  ]
+}
+{% endschema %}
